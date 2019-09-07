@@ -1,25 +1,39 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import className from './App.css';
+import Header from "./components/Header/Header";
+import Navbar from "./components/Navbar/Navbar";
+import {Route} from "react-router-dom";
+import New from "./components/News/New";
+import Profile from "./components/Profile/Profile";
+import Message from "./components/Message/Message";
 
-function App() {
+
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="app-page">
+       <div className='container'>
+
+            <Header logo='http://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/vk-icon.png'/>
+
+           <div className="grid">
+               <Navbar />
+
+               {/*<Route path='/message' component={Message}/>*/}
+               {/*<Route path='/profile' component={Profile}/>*/}
+               {/*<Route path='/news' component={New}/>*/}
+
+                <Route path='/message' render={() => <Message state={props.state.dialogPage}
+                                                              states={props.state.avatarPage}/>}/>
+                <Route path='/profile' render={() => <Profile/>}/>
+                <Route path='/news' render={() => <New/>}/>
+
+           </div>
+
+       </div>
+   </div>
+
+
   );
 }
 
